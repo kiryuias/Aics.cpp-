@@ -1,0 +1,10 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+  string name;
+  cout<<" Welcome to C++ Language Programming";
+  cout<<"\n Good Morning pal!, what is your name? ";
+  cin>>name;
+  cout<<" Hi " + name + ", Welcome to C++ Language Programming Class.\n";
+}
