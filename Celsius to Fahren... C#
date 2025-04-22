@@ -1,0 +1,12 @@
+using System;
+
+class Bambi{
+        static void Main(string[] args)
+    {
+        Console.Write("Enter Celsius: ");
+        int celsiusInput = Convert.ToInt32(Console.ReadLine());
+        double fahrenheitConverted = (celsiusInput * 1.8) + 32;
+        Console.WriteLine("Fahrenheit: " + fahrenheitConverted);
+
+    }
+}
