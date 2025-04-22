@@ -1,0 +1,54 @@
+using System;
+using System.Security.Cryptography.X509Certificates;
+
+class Shape
+{ // Parent class
+    protected double radius = 0, side1 = 0, side2 = 0;
+    public Shape() // method
+    {
+        Console.WriteLine("Shape Initiaized");
+    }
+    public Shape(double radius) // method
+    {
+        this.radius = radius;
+        Console.WriteLine("Circle Shape Initialized");
+    }
+    public Shape(double side1, double side2) // method
+    {
+        this.side1 = side1;
+        this.side2 = side2;
+    }
+}
+
+class Circle : Shape
+{
+    public Circle(double radius) : base(radius) { void Area() {
+            Console.WriteLine("Area of Circle " + 3.14 * (this.radius * this.radius));
+        }
+}
+
+
+    /*
+     * public void Area() {
+        {
+            Console.WriteLine("Area of Circle " + 3.14 * (this.radius * this.radius));
+        }
+    }
+}
+*/
+
+    class Square : Shape
+    {
+        public Square(double side1, double side2) : base(side1, side2)
+        {
+            Console.WriteLine("Area of Square: " + side1 * side2);
+        }
+    }
+    class Program
+    {
+        static void Main()
+        {
+            Circle test_shape = new Circle(4.5);
+            test_shape.Area();
+        }
+    }
