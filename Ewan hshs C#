@@ -1,0 +1,14 @@
+using System;
+
+namespace Bambi {
+    class Bambi{
+        static void Main(string[] angs){
+            string test = "";
+            Console.WriteLine("Hahaha");
+            test = Console.ReadLine();
+            Console.WriteLine(test);
+            const int mynumber = 15;
+            const bool boolean = true;
+        }
+    }
+}
