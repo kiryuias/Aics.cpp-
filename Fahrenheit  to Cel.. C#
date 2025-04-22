@@ -1,6 +1,6 @@
 using System;
 
-class TemperatureConverter{
+class Bambi{
     static void Main(string[] args)
     {
         Console.Write("Enter the Fahrenheit: ");
