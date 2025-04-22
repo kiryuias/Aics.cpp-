@@ -1,0 +1,67 @@
+using System;
+class Shape
+{
+    protected double length = 0;
+    protected double height = 0;
+    protected double base_ = 0;
+    protected double radius;
+    public Shape()
+    {
+        radius = base_ / 2;
+    }
+
+    public virtual void GetDimension()
+    {
+        if (length > 0)
+        {
+            Console.WriteLine($"The length is {length}");
+        }
+        if (base_ > 0)
+        {
+            Console.WriteLine($"The base is {base_}");
+        }
+        if (height > 0)
+        {
+            Console.WriteLine($"The height is {height}");
+        }
+        if (radius > 0)
+        {
+            Console.WriteLine($"The radius is {radius}");
+        }
+    }
+}
+class Pyramid : Shape
+{
+    public Pyramid(double b, double h)
+    {
+        base_ = b;
+        height = h;
+    }
+    public void Pyramid_Vol()
+    {
+        double vol = (base_ * height) / 3;
+        Console.WriteLine($"The volume of pyramid is {vol}");
+    }
+}
+class Cone : Shape
+{
+    public Cone(double r, double h)
+    {
+        radius = r;
+        height = h;
+    }
+    public void Cone_Vol()
+    {
+        double vol = Math.PI * (radius * radius * height) / 3;
+        Console.WriteLine($"The volume of cone is {vol}");
+    }
+}
+class Program
+{
+    static void Main(string[] args)
+    {
+        Cone bigcone = new Cone(5, 20);
+        bigcone.GetDimension();
+        bigcone.Cone_Vol();
+    }
+}
