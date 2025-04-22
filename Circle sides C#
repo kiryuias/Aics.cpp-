@@ -1,0 +1,35 @@
+using System;
+
+class Shape { // Parent class
+    private double rad = 0, s1 = 0, s2 = 0;
+    public Shape() // method
+    {
+        Console.WriteLine("Shape Initiaized");
+    }
+    public Shape(double radius) // method
+    {
+        rad = radius;
+        Console.WriteLine("Circle Shape Initialized");
+    }
+    public Shape(double side1, double side2) // method
+    {
+        s1= side1;
+        s2= side2;
+        Console.WriteLine("Square Initialized side 1: " + s1 + " side 2: "+ s2);
+    }
+}
+
+class Circle:Shape { // Child class
+    public Circle(double radius):base(radius) // Inheritance for radius 
+    {
+        Console.WriteLine("Circle Initialized Radiu: " + radius);
+    }
+}
+
+class Program
+{
+    static void Main()
+    {
+        Circle test_shape = new Circle(4.5);
+    }
+}
