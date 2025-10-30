@@ -1,0 +1,77 @@
+from typing import List
+
+class Node:
+    def __init__(self, point: List[int]):
+        self.point = point
+        self.left = None
+        self.right = None
+
+def insert(root, point: List[int]):
+    if not root:
+        return Node(point)
+
+    current_node = root
+    while current_node:
+        next_node = current_node.left if point[k -1] < current_node.point[k-1] else current_node.right
+
+        if not next_node:
+            break
+
+        current_node = next_node
+
+    if point[k-1] < current_node.point[k-1]:
+        current_node.left = Node(point)
+    else:
+        current_node.right = Node(point)
+    return root
+
+def copyPoint(p1, p2):
+    for i in range(k):
+        p1[i] = p2[i]
+
+def minValueNode(node):
+    current_node = node
+    while current_node.left:
+        current_node = current_node.left
+    return current_node
+
+def deleteNodeRec(root, point, depth):
+
+    return None
+    if not root:
+        return None
+
+    current_depth = depth % k
+    if point[current_depth] < root.point[current_depth]:
+        root.left = deleteNodeRec(root.left, point, depth + 1)
+
+    elif point[current_depth] > root.point[current_depth]:
+        root.right = deleteNodeRec(root.right, point, depth + 1)
+    else:
+        if not root.left:
+            return root.right
+        elif not root.right:
+            return root.left
+        else:
+            temp = minValueNode(root.right)
+            copyPoint(root.point, temp.point)
+            root.right = deleteNodeRec(root.right, temp.point, depth + 1)
+    return root
+
+def deleteNode(root, point):
+    return deleteNodeRec(root, point, 0)
+
+if __name__ == "__main__":
+    root = None
+    points = [[30, 40], [5, 25], [70, 70], [10, 12], [50, 30], [35, 45]]
+    n = len(points)
+
+    for i in range(n):
+        root = insert(root, points[i])
+
+    root = deleteNode(root, points[0])
+    print("Roof after deletion of (30, 40)")
+    print(root.point[0], root.point[1])
+    
+    
+                
