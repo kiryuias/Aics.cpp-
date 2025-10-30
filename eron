@@ -1,0 +1,106 @@
+class SSet:
+    def __init__(self, maxV, cap):
+        self.sparse = [0]*(maxV + 1)
+        self.dense = [0] * cap
+        self.capacity = cap
+        self.maxValue = maxV
+        self.n = 0
+
+
+    def search(self, x):
+        if x > self.maxValue:
+            return - 1
+        if self.sparse[x] < self.n and self.dense[self.sparse[x]] == x:
+            return self.sparse[x]
+        return - 1
+
+    def insert(self, x):
+        if x > self.maxValue:
+            return
+        if self.n >= self.capacity:
+            return
+        if self.search(x) != -1:
+            return
+
+        self.dense[self.n] = x
+        self.sparse[x] = self.n
+
+        self.n += 1
+
+    def delete(self, x):
+        if self.search(x) == -1:
+            return
+
+        temp = self.dense[self.n - 1]
+        self.dense[self.sparse[x]] = temp
+        self.sparse[temp] = self.sparse[x]
+        self.n -= 1
+
+    def print_set(self):
+        for i in range(self.n):
+            print(self.dense[i], end='')
+        print()
+
+    def intersection(self, s):
+        iCap = min(self.n, s.n)
+        iMaxVal = max(s.maxValue, self.maxValue)
+        result = SSet(iMaxVal, iCap)
+
+        if self.n < s.n:
+            for i in range(self.n):
+                if s.search(self.dense[i]) != -1:
+                    result.insert(self.dense[i])
+        else:
+            for i in range(s.n):
+                if self.search(s.dense[i]) != -1:
+                    result.insert(s.dense[i])
+        return result
+
+    def setUnion(self, set2):
+        uCap = self.n + set2.n
+        uMaxVal = max(self.maxValue, set2.maxValue)
+
+        union_set = SSet(uMaxVal, uCap)
+
+        for i in range(self.n):
+            union_set.insert(self.dense[i])
+
+        for i in range(set2.n):
+            union_set.insert(set2.dense[i])
+
+        return union_set
+
+if __name__ == '__main__':
+    s1 = SSet(100, 5)
+
+    s1.insert(5)
+    s1.insert(3)
+    s1.insert(9)
+    s1.insert(10)
+
+    s1.print_set()
+    index = s1.search(3)
+    if index != -1:
+        print(f"\n3 is found at index {index} in set1")
+    else:
+        print("\n3 doesn't exist in set1")
+
+    s1.delete(9)
+    s1.print_set()
+
+    s2 = SSet(1000, 6)
+    s2.insert(4)
+    s2.insert(3)
+    s2.insert(7)
+    s2.insert(200)
+
+    print("\n The elements in set2 are:")
+    s2.print_set()
+
+    intersect = s2.intersection(s1)
+    print("\nintersection of set1 and set2")
+    intersect.print_set()
+
+    unionset = s1.setUnion(s2)
+    print("\nUnion of set1 and set2")
+    
